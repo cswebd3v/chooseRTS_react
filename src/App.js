@@ -1,26 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Button from './button.js';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor () {
+    super()
+    this.state = { choice: '' }
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    let games = ['Warcraft III', 'StarCraft II', 'Age of Empires II', 'StarCraft Remastered'];
+    let random = games[Math.floor(Math.random()*games.length)];
+
+    this.setState({ choice: random })
+
+  }
+
+  render() {
+    return (
+      <div className="container">
+        <div className="choosegame">
+          <Button onClick={this.handleClick} />
+        </div>
+        <div className="displayResults">
+          <p>You should play {this.state.choice} </p>
+        </div>
+      </div>
+      
+    );
+  }
 }
+
 
 export default App;
